@@ -1,4 +1,4 @@
-import { randomBetween, sceneConfig } from "./scene-config.js";
+import { eventTiming, motionEvents, randomBetween } from "./scene-config.js";
 
 export class AmbientEvents {
   constructor(scene, reduceMotion) {
@@ -6,69 +6,57 @@ export class AmbientEvents {
     this.reduceMotion = reduceMotion;
     this.timer = 0;
     this.running = false;
-    this.lastEvent = "";
-    this.events = [
-      { name: "butterfly", selector: ".butterfly-event", duration: 8000 },
-      { name: "paper", selector: ".paper-event", duration: 10000 },
-      { name: "shadow", selector: ".shadow-event", duration: 7000 },
-      { name: "seeds", selector: ".seed-event", duration: 6000 },
-      { name: "coin", selector: ".coin-discovery", className: "is-glinting", duration: 1600 },
-      { name: "disc", selector: ".silver-disc", className: "is-glinting", duration: 1600 },
-      { name: "bend", selector: ".middle-plants .plant:nth-child(9)", className: "is-bending", duration: 2900 },
-    ];
+    this.lastSelectors = [];
   }
 
   start() {
-    if (this.reduceMotion.matches || this.running) return;
+    if (this.running || this.reduceMotion.matches) return;
     this.running = true;
-    this.schedule(sceneConfig.events.firstDelay);
+    this.schedule(eventTiming.first);
   }
 
-  schedule(range = sceneConfig.events.nextDelay) {
+  schedule(range = eventTiming.next) {
     window.clearTimeout(this.timer);
-    const delay = randomBetween(range[0], range[1]);
-    this.timer = window.setTimeout(() => this.playOne(), delay);
+    this.timer = window.setTimeout(() => this.play(), randomBetween(range[0], range[1]));
   }
 
-  playOne() {
-    if (!this.running) return;
-    const options = this.events.filter((event) => event.name !== this.lastEvent);
-    const event = options[Math.floor(Math.random() * options.length)];
+  chooseEvent() {
+    const available = motionEvents.filter((event) => {
+      if (this.lastSelectors.includes(event.selector)) return false;
+      const element = this.scene.querySelector(event.selector);
+      return element && getComputedStyle(element).display !== "none";
+    });
+    const common = available.filter((event) => !event.rare);
+    const pool = Math.random() < 0.22 ? available : common;
+    return pool[Math.floor(Math.random() * pool.length)];
+  }
+
+  play() {
+    if (!this.running || this.reduceMotion.matches) return;
+    const event = this.chooseEvent();
     const element = this.scene.querySelector(event.selector);
+
     if (!element) {
       this.schedule();
       return;
     }
 
-    const activeClass = event.className || "is-active";
-    element.classList.remove(activeClass);
+    element.classList.remove(event.className);
     void element.getBoundingClientRect();
-    element.classList.add(activeClass);
-    this.lastEvent = event.name;
+    element.classList.add(event.className);
+    this.lastSelectors = [event.selector, ...this.lastSelectors].slice(0, 3);
 
     window.setTimeout(() => {
-      element.classList.remove(activeClass);
+      element.classList.remove(event.className);
       if (this.running) this.schedule();
     }, event.duration);
   }
 
-  setPaused(paused) {
-    if (paused) {
-      this.running = false;
-      window.clearTimeout(this.timer);
-      this.scene.querySelectorAll(".ambient-event, .is-glinting, .is-bending").forEach((element) => {
-        element.classList.remove("is-active", "is-glinting", "is-bending");
-      });
-      return;
-    }
-
-    this.running = false;
-    this.start();
-  }
-
-  destroy() {
+  stop() {
     this.running = false;
     window.clearTimeout(this.timer);
+    this.scene.querySelectorAll(".is-active, .is-nodding, .is-trembling, .is-breathing, .is-lifting").forEach((element) => {
+      element.classList.remove("is-active", "is-nodding", "is-trembling", "is-breathing", "is-lifting");
+    });
   }
 }
-
