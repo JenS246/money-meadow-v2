@@ -1,28 +1,38 @@
 # Money Meadow V2
 
-Money Meadow V2 is a quiet, animated browser illustration. A layered botanical field contains coins, serial-like numerals, engraved patterns, printed fragments, and other traces of currency. The details are meant to be found gradually rather than announced.
+Money Meadow V2 brings the original Money Meadow artwork subtly to life. The full-screen experience preserves the lush photographic garden, its winding coin path, and the paper currency tucked among the flowers.
 
 This is an independent project. It does not replace or modify the original `money-meadow-animation` repository.
 
-## How it works
+## Visual foundation
 
-The meadow is a single responsive SVG composed from reusable plant symbols. Native JavaScript gives each plant its own slow motion cycle, adds restrained pointer and touch reactions, and schedules occasional ambient events. No framework, build step, external font, or runtime dependency is required.
+The page uses its own copy of `garden-v6.png` from the original project. It is not hotlinked. The image remains the artwork and fills the viewport with responsive cropping.
 
-The code is split by responsibility:
+Motion is deliberately uncommon and local:
 
-- `index.html`: illustration markup, SVG definitions, and semantic page structure
-- `css/styles.css`: page composition, responsive rules, textures, event keyframes, and accessibility fallbacks
-- `js/scene-config.js`: motion and interaction settings
-- `js/plant-motion.js`: asynchronous plant animation
-- `js/pointer-interaction.js`: local pointer and touch disturbance
-- `js/ambient-events.js`: uncommon butterflies, drifting paper, passing shadows, seeds, glints, and stronger bends
-- `js/discoveries.js`: keyboard, pointer, and touch discovery feedback
-- `js/main.js`: scene initialization and pause control
+- selected flower and leaf regions move by only a few pixels
+- one bill edge may lift slightly before becoming still
+- individual coins occasionally catch the light
+- a butterfly, seed, leaf, or distant insect may appear
+- foreground and middle-ground image patches respond with very small pointer parallax
+
+The base image never sways as a single unit.
+
+## Project structure
+
+- `index.html`: full-screen scene markup
+- `css/styles.css`: photographic masks, responsive crop, and event animation
+- `assets/images/garden-v6.png`: independent local copy of the original artwork
+- `js/scene-config.js`: event definitions, timing, and future hotspot data
+- `js/ambient-events.js`: irregular event scheduling
+- `js/parallax.js`: restrained pointer and touch depth response
+- `js/hotspots.js`: dormant seek-and-find region preparation
+- `js/main.js`: scene initialization and reduced-motion handling
 - `.github/workflows/pages.yml`: GitHub Pages deployment
 
 ## Run locally
 
-Because the JavaScript uses browser modules, serve the folder over HTTP instead of opening `index.html` directly.
+Serve the folder over HTTP because the JavaScript uses browser modules.
 
 ```bash
 python3 -m http.server 8080
@@ -30,38 +40,31 @@ python3 -m http.server 8080
 
 Then open `http://localhost:8080/`.
 
-## Publish with GitHub Pages
+## GitHub Pages
 
-The included workflow deploys the repository root as a static Pages site.
+The included GitHub Actions workflow deploys the repository root as a static site.
 
-1. Create a new GitHub repository named `money-meadow-v2`.
-2. Push this project to the repository's `main` branch.
-3. Open the repository on GitHub and go to **Settings > Pages**.
-4. Under **Build and deployment**, select **GitHub Actions** as the source.
-5. Run the **Deploy static site to Pages** workflow if it has not started automatically.
-
-Expected site URL:
+Live site:
 
 `https://jens246.github.io/money-meadow-v2/`
 
-All project references are relative, so the site works from the repository subpath.
+Repository:
 
-## Accessibility and responsive behavior
+`https://github.com/JenS246/money-meadow-v2`
 
-- `prefers-reduced-motion` stops plant movement and removes drifting events.
-- The breeze can also be paused manually.
-- Discoverable details can be reached with the keyboard and activated with Enter or Space.
-- Text and controls keep visible focus styles and readable contrast.
-- The mobile layout changes the scene crop rather than shrinking the entire desktop illustration.
-- Touch movement gently disturbs nearby plants.
+All asset references are relative, so the project works from the repository subpath.
 
-## Extending the meadow
+## Accessibility
 
-The illustration is ready to grow into multiple scenes. Add a scene-specific configuration module, reuse or replace the SVG symbols, and keep seek-and-find state separate from the ambient visual modules. The current discoveries are descriptive only. There is no score, timer, inventory, or win state.
+The scene has a concise text description for screen readers. When `prefers-reduced-motion` is enabled, localized movement, glints, ambient events, and parallax are removed while the complete original artwork remains visible.
 
-## Data and services
+## Future seek-and-find support
 
-The project stores no user data and uses no backend or external service.
+`js/scene-config.js` contains image-relative regions for coins, bills, flowers, and insects. These regions are rendered as inert, non-interactive metadata today. A later game layer can enable them without rebuilding the visual scene.
+
+## Services and data
+
+The project has no backend, analytics, external fonts, runtime dependency, or user-data storage.
 
 ## License
 

@@ -3,327 +3,48 @@
   <head>
     <meta charset="utf-8">
     <meta name="viewport" content="width=device-width, initial-scale=1">
-    <meta name="theme-color" content="#d9dec2">
-    <meta name="description" content="Money Meadow is a living illustrated field where traces of currency hide among flowers, weeds, and paper fragments.">
-    <title>Money Meadow</title>
+    <meta name="theme-color" content="#202515">
+    <meta name="description" content="Money Meadow is a living impossible garden where flowers, coins, and paper currency grow together.">
+    <link rel="preload" href="./assets/images/garden-v6.png" as="image" fetchpriority="high">
     <link rel="stylesheet" href="./css/styles.css">
     <script type="module" src="./js/main.js"></script>
+    <title>Money Meadow</title>
   </head>
   <body>
-    <main class="page-shell">
-      <header class="masthead" aria-label="Money Meadow title">
-        <div>
-          <p class="kicker">An overgrown study in small denominations</p>
-          <h1>Money Meadow</h1>
-        </div>
-        <button class="motion-toggle" type="button" aria-pressed="false">
-          <span class="motion-toggle__mark" aria-hidden="true"></span>
-          <span class="motion-toggle__label">Pause the breeze</span>
-        </button>
-      </header>
+    <main class="meadow" aria-labelledby="title" aria-describedby="scene-description">
+      <h1 id="title" class="title">Money Meadow</h1>
+      <p id="scene-description" class="sr-only">A vivid flower garden surrounds a winding path covered in coins. Paper currency is tucked among dense blossoms and foliage. Parts of the garden move occasionally and independently.</p>
 
-      <section class="meadow-frame" aria-labelledby="meadow-description">
-        <h2 id="meadow-description" class="sr-only">An animated botanical meadow with hidden currency details</h2>
-        <svg class="meadow" viewBox="0 220 1440 680" role="img" aria-labelledby="scene-title scene-desc" preserveAspectRatio="xMidYMid slice">
-          <title id="scene-title">A living illustrated money meadow</title>
-          <desc id="scene-desc">Layered hand-drawn flowers and grasses move in a soft breeze. Coins, printed fragments, numbers, and engraving patterns are tucked into the landscape.</desc>
+      <div class="image-stage" aria-hidden="true">
+        <img class="garden-base" src="./assets/images/garden-v6.png" alt="" width="1672" height="941" fetchpriority="high">
 
-          <defs>
-            <filter id="paper-wobble" x="-15%" y="-15%" width="130%" height="130%">
-              <feTurbulence type="fractalNoise" baseFrequency="0.013 0.12" numOctaves="2" seed="8" result="noise"/>
-              <feDisplacementMap in="SourceGraphic" in2="noise" scale="1.5" xChannelSelector="R" yChannelSelector="B"/>
-            </filter>
-            <filter id="soft-shadow" x="-30%" y="-30%" width="160%" height="160%">
-              <feGaussianBlur in="SourceAlpha" stdDeviation="5" result="blur"/>
-              <feOffset dx="0" dy="5" result="offset"/>
-              <feColorMatrix in="offset" type="matrix" values="0 0 0 0 0.12  0 0 0 0 0.18  0 0 0 0 0.10  0 0 0 .18 0"/>
-              <feMerge><feMergeNode/><feMergeNode in="SourceGraphic"/></feMerge>
-            </filter>
-            <radialGradient id="sky-wash" cx="73%" cy="8%" r="88%">
-              <stop offset="0" stop-color="#f5eac4"/>
-              <stop offset=".42" stop-color="#d8dec2"/>
-              <stop offset="1" stop-color="#aab99a"/>
-            </radialGradient>
-            <linearGradient id="soil-wash" x1="0" y1="0" x2="0" y2="1">
-              <stop offset="0" stop-color="#7e916c"/>
-              <stop offset=".48" stop-color="#536848"/>
-              <stop offset="1" stop-color="#354838"/>
-            </linearGradient>
-            <linearGradient id="paper-scrap" x1="0" y1="0" x2="1" y2="1">
-              <stop offset="0" stop-color="#e3d6ad"/>
-              <stop offset="1" stop-color="#b9b48d"/>
-            </linearGradient>
-            <radialGradient id="coin-gold" cx="35%" cy="28%" r="75%">
-              <stop offset="0" stop-color="#eee0a0"/>
-              <stop offset=".48" stop-color="#aa8843"/>
-              <stop offset="1" stop-color="#67552f"/>
-            </radialGradient>
-            <radialGradient id="coin-silver" cx="35%" cy="25%" r="75%">
-              <stop offset="0" stop-color="#e1e0d2"/>
-              <stop offset=".48" stop-color="#999b8c"/>
-              <stop offset="1" stop-color="#5d665b"/>
-            </radialGradient>
-            <pattern id="guilloche" width="24" height="12" patternUnits="userSpaceOnUse">
-              <path d="M-6 6 Q0-1 6 6T18 6T30 6" fill="none" stroke="#536b55" stroke-width="1" opacity=".64"/>
-              <path d="M-6 7 Q0 14 6 7T18 7T30 7" fill="none" stroke="#8e5e4c" stroke-width=".65" opacity=".5"/>
-            </pattern>
+        <div class="motion-patch patch-roses layer-foreground" data-patch="roses"><div class="patch-image"></div></div>
+        <div class="motion-patch patch-hollyhocks layer-middle" data-patch="hollyhocks"><div class="patch-image"></div></div>
+        <div class="motion-patch patch-hydrangeas layer-middle" data-patch="hydrangeas"><div class="patch-image"></div></div>
+        <div class="motion-patch patch-lupines layer-background" data-patch="lupines"><div class="patch-image"></div></div>
+        <div class="motion-patch patch-coneflowers layer-middle" data-patch="coneflowers"><div class="patch-image"></div></div>
+        <div class="motion-patch patch-tulips layer-foreground" data-patch="tulips"><div class="patch-image"></div></div>
+        <div class="motion-patch patch-marigolds layer-foreground" data-patch="marigolds"><div class="patch-image"></div></div>
+        <div class="motion-patch patch-peonies layer-foreground" data-patch="peonies"><div class="patch-image"></div></div>
 
-            <symbol id="grass-tuft" viewBox="-70 -210 140 220">
-              <g fill="none" stroke-linecap="round">
-                <path d="M0 8 Q-1-102 -28-190" stroke="#405d3d" stroke-width="6"/>
-                <path d="M1 8 Q12-98 44-168" stroke="#58734b" stroke-width="5"/>
-                <path d="M-3 8 Q-35-77 -56-123" stroke="#6e7f52" stroke-width="7"/>
-                <path d="M5 8 Q35-56 61-83" stroke="#3d583b" stroke-width="5"/>
-                <path d="M-8 8 Q-12-69 -6-137" stroke="#83905a" stroke-width="4"/>
-              </g>
-            </symbol>
+        <div class="motion-patch patch-bill-high layer-middle" data-patch="bill-high"><div class="patch-image"></div></div>
+        <div class="motion-patch patch-bill-middle layer-middle" data-patch="bill-middle"><div class="patch-image"></div></div>
+        <div class="motion-patch patch-bill-low layer-middle" data-patch="bill-low"><div class="patch-image"></div></div>
 
-            <symbol id="reed" viewBox="-45 -250 90 260">
-              <path d="M0 8 Q-10-126 8-225" fill="none" stroke="#405844" stroke-width="5" stroke-linecap="round"/>
-              <path d="M8-225 C-12-231-13-253 2-258 C20-260 29-239 8-225Z" fill="#806a45" stroke="#4b4936" stroke-width="2"/>
-              <path d="M-4-121 Q-35-163-40-192 Q-9-181 1-146" fill="#75815c" stroke="#455b42" stroke-width="2"/>
-              <path d="M2-84 Q32-116 39-151 Q12-141 0-113" fill="#627a50" stroke="#455b42" stroke-width="2"/>
-            </symbol>
+        <div class="coin-glint coin-glint-path-high" data-glint="path-high"></div>
+        <div class="coin-glint coin-glint-path-low" data-glint="path-low"></div>
+        <div class="coin-glint coin-glint-large" data-glint="large"></div>
+        <div class="coin-glint coin-glint-bank" data-glint="bank"></div>
 
-            <symbol id="daisy" viewBox="-75 -230 150 240">
-              <path d="M0 9 Q-11-112 2-184" fill="none" stroke="#405c3d" stroke-width="7" stroke-linecap="round"/>
-              <path d="M-4-76 Q-52-116-55-144 Q-17-132 2-101" fill="#657c4c" stroke="#3b5b40" stroke-width="2"/>
-              <path d="M0-116 Q34-153 55-154 Q44-126 3-96" fill="#7f915c" stroke="#3b5b40" stroke-width="2"/>
-              <g transform="translate(2 -185)" stroke="#996858" stroke-width="2">
-                <ellipse rx="15" ry="43" transform="rotate(0) translate(0 -33)" fill="#e8d8c0"/>
-                <ellipse rx="15" ry="43" transform="rotate(45) translate(0 -33)" fill="#e5b6a7"/>
-                <ellipse rx="15" ry="43" transform="rotate(90) translate(0 -33)" fill="#f0ddd0"/>
-                <ellipse rx="15" ry="43" transform="rotate(135) translate(0 -33)" fill="#dba598"/>
-                <ellipse rx="15" ry="43" transform="rotate(180) translate(0 -33)" fill="#eedfc5"/>
-                <ellipse rx="15" ry="43" transform="rotate(225) translate(0 -33)" fill="#e1b09a"/>
-                <ellipse rx="15" ry="43" transform="rotate(270) translate(0 -33)" fill="#f0dbc7"/>
-                <ellipse rx="15" ry="43" transform="rotate(315) translate(0 -33)" fill="#dca794"/>
-                <circle r="24" fill="#bd873f" stroke="#704f2e" stroke-width="3"/>
-                <circle r="8" fill="#6b6138" stroke="none"/>
-              </g>
-            </symbol>
+        <div class="ambient-event butterfly" data-event="butterfly"><i></i><i></i></div>
+        <div class="ambient-event drifting-seed" data-event="seed"><i></i><i></i><i></i></div>
+        <div class="ambient-event falling-leaf" data-event="leaf"></div>
+        <div class="ambient-event distant-insect" data-event="insect"></div>
 
-            <symbol id="poppy" viewBox="-70 -220 140 230">
-              <path d="M0 8 Q16-103 -3-171" fill="none" stroke="#456040" stroke-width="7" stroke-linecap="round"/>
-              <path d="M5-78 Q41-108 51-139 Q17-130 0-102" fill="#718354" stroke="#3f5a3d" stroke-width="2"/>
-              <g transform="translate(-4 -175)" stroke="#774232" stroke-width="2.5">
-                <path d="M0 2 C-7-57 51-66 52-20 C52 4 24 16 0 2Z" fill="#d96d53"/>
-                <path d="M2 3 C-42 22-62-27-30-47 C-4-64 13-30 2 3Z" fill="#b64f46"/>
-                <path d="M-1 1 C-32-13-19-57 13-51 C41-47 31-7-1 1Z" fill="#e18d68"/>
-                <circle r="17" fill="#383a31" stroke="#5f4432"/>
-              </g>
-            </symbol>
+        <div class="hotspot-layer"></div>
+      </div>
 
-            <symbol id="bellflower" viewBox="-65 -245 130 255">
-              <path d="M0 7 Q-15-124 5-218" fill="none" stroke="#466044" stroke-width="6" stroke-linecap="round"/>
-              <path d="M-4-105 Q-41-138-46-170 Q-8-154 1-130" fill="#59774f" stroke="#354f39" stroke-width="2"/>
-              <g fill="#6e6b9f" stroke="#41456e" stroke-width="2">
-                <path d="M3-210 Q-43-198-26-162 Q-5-148 8-170 Q17-193 3-210Z"/>
-                <path d="M7-220 Q48-209 34-173 Q15-155 2-178 Q-8-199 7-220Z" fill="#8580b7"/>
-                <path d="M0-181 Q-22-165-7-139 Q14-132 20-156 Q20-172 0-181Z" fill="#a69abb"/>
-              </g>
-            </symbol>
-
-            <symbol id="clover" viewBox="-80 -180 160 190">
-              <path d="M0 8 Q-2-77 5-133" fill="none" stroke="#3d5c3e" stroke-width="6"/>
-              <g transform="translate(4 -140)" fill="#6f8757" stroke="#395c3d" stroke-width="2.5">
-                <path d="M0 7 C-18-4-46-30-27-49 C-5-61 7-34 0 7Z"/>
-                <path d="M0 7 C-1-23 14-58 39-49 C62-30 33-5 0 7Z" fill="#80945e"/>
-                <path d="M0 7 C13 18 18 51-8 54 C-36 50-23 17 0 7Z" fill="#637a4d"/>
-              </g>
-            </symbol>
-
-            <symbol id="seedhead" viewBox="-55 -260 110 270">
-              <path d="M0 9 Q9-145-2-217" fill="none" stroke="#566245" stroke-width="5" stroke-linecap="round"/>
-              <g transform="translate(-2 -219)" fill="#aa9162" stroke="#6b6247" stroke-width="1.5">
-                <ellipse rx="8" ry="21" transform="rotate(-34) translate(-14 -7)"/>
-                <ellipse rx="8" ry="22" transform="rotate(-10) translate(-4 -21)"/>
-                <ellipse rx="8" ry="21" transform="rotate(23) translate(12 -17)"/>
-                <ellipse rx="8" ry="21" transform="rotate(51) translate(23 -2)"/>
-                <ellipse rx="8" ry="20" transform="rotate(82) translate(27 12)"/>
-                <ellipse rx="7" ry="18" transform="rotate(125) translate(22 23)"/>
-              </g>
-            </symbol>
-
-            <symbol id="fern" viewBox="-80 -240 160 250">
-              <path d="M0 8 Q-4-104 8-221" fill="none" stroke="#354f3c" stroke-width="6" stroke-linecap="round"/>
-              <g fill="#6e825b" stroke="#40583f" stroke-width="1.5">
-                <path d="M3-62 Q-42-68-55-91 Q-23-94 5-78Z"/>
-                <path d="M4-83 Q48-91 61-117 Q24-114 4-99Z"/>
-                <path d="M5-108 Q-40-117-51-139 Q-19-138 6-122Z"/>
-                <path d="M6-133 Q45-145 54-167 Q20-160 6-148Z"/>
-                <path d="M7-158 Q-31-169-39-189 Q-11-184 8-173Z"/>
-                <path d="M8-183 Q34-195 39-211 Q15-204 8-195Z"/>
-              </g>
-            </symbol>
-
-            <symbol id="coin" viewBox="-40 -40 80 80">
-              <circle r="34" fill="url(#coin-gold)" stroke="#5d5030" stroke-width="3"/>
-              <circle r="26" fill="none" stroke="#786638" stroke-width="2" stroke-dasharray="2 3"/>
-              <path d="M-3-16 C11-15 15-8 12-1 C9 7-1 7-7 9 C-14 12-10 18 3 19" fill="none" stroke="#665633" stroke-width="3" stroke-linecap="round"/>
-              <path d="M0-21 L0 23" stroke="#665633" stroke-width="2"/>
-            </symbol>
-          </defs>
-
-          <rect width="1440" height="900" fill="url(#sky-wash)"/>
-          <g class="paper-clouds" opacity=".32" fill="#f3efd8" filter="url(#paper-wobble)">
-            <path d="M-50 172 C111 109 196 137 298 114 C419 86 488 103 578 146 C405 162 281 206 76 204Z"/>
-            <path d="M890 98 C1014 60 1090 79 1152 120 C1240 86 1359 95 1500 143 L1500 190 C1306 166 1054 177 890 98Z"/>
-          </g>
-
-          <g class="background-hills" filter="url(#paper-wobble)">
-            <path d="M0 382 C152 302 263 319 391 354 C526 276 657 293 780 351 C893 294 1050 287 1175 351 C1271 305 1369 317 1440 342 L1440 544 L0 544Z" fill="#84977a" opacity=".72"/>
-            <path d="M0 428 C181 369 301 396 429 432 C578 356 727 370 840 430 C1010 357 1258 368 1440 429 L1440 598 L0 598Z" fill="#687f60" opacity=".78"/>
-            <path d="M-20 469 C174 432 273 450 415 483 C603 420 816 435 970 481 C1158 425 1327 441 1470 470 L1470 641 L-20 641Z" fill="#536d54"/>
-          </g>
-
-          <g class="distant-meadow" opacity=".72">
-            <g class="plant background" transform="translate(85 522) scale(.46)"><g class="reactive"><g class="sway"><use href="#seedhead"/></g></g></g>
-            <g class="plant background" transform="translate(148 523) scale(.36)"><g class="reactive"><g class="sway"><use href="#daisy"/></g></g></g>
-            <g class="plant background" transform="translate(228 521) scale(.42)"><g class="reactive"><g class="sway"><use href="#grass-tuft"/></g></g></g>
-            <g class="plant background" transform="translate(330 527) scale(.31)"><g class="reactive"><g class="sway"><use href="#bellflower"/></g></g></g>
-            <g class="plant background" transform="translate(410 522) scale(.5)"><g class="reactive"><g class="sway"><use href="#seedhead"/></g></g></g>
-            <g class="plant background" transform="translate(551 529) scale(.3)"><g class="reactive"><g class="sway"><use href="#poppy"/></g></g></g>
-            <g class="plant background" transform="translate(624 520) scale(.42)"><g class="reactive"><g class="sway"><use href="#grass-tuft"/></g></g></g>
-            <g class="plant background" transform="translate(757 526) scale(.34)"><g class="reactive"><g class="sway"><use href="#daisy"/></g></g></g>
-            <g class="plant background" transform="translate(862 524) scale(.44)"><g class="reactive"><g class="sway"><use href="#reed"/></g></g></g>
-            <g class="plant background" transform="translate(990 529) scale(.31)"><g class="reactive"><g class="sway"><use href="#clover"/></g></g></g>
-            <g class="plant background" transform="translate(1078 523) scale(.48)"><g class="reactive"><g class="sway"><use href="#seedhead"/></g></g></g>
-            <g class="plant background" transform="translate(1213 525) scale(.34)"><g class="reactive"><g class="sway"><use href="#bellflower"/></g></g></g>
-            <g class="plant background" transform="translate(1334 520) scale(.48)"><g class="reactive"><g class="sway"><use href="#grass-tuft"/></g></g></g>
-          </g>
-
-          <path d="M0 510 C211 489 379 526 547 498 C710 471 877 523 1060 499 C1231 476 1350 501 1440 483 L1440 900 L0 900Z" fill="url(#soil-wash)"/>
-          <g class="ground-marks" fill="none" stroke-linecap="round">
-            <path d="M57 683 Q217 624 371 684 T686 678" stroke="#344a38" stroke-width="3" opacity=".5"/>
-            <path d="M803 641 Q999 596 1194 659 T1510 620" stroke="#879669" stroke-width="2" opacity=".48"/>
-            <path d="M137 787 Q305 746 491 796" stroke="#b0a06c" stroke-width="3" opacity=".28"/>
-          </g>
-
-          <g class="currency-details">
-            <g class="discovery coin-discovery" tabindex="0" role="button" aria-label="Hidden coin in the soil" data-label="A coin pressed into the dark earth" transform="translate(310 674) rotate(-12) scale(.8)">
-              <use href="#coin"/>
-              <ellipse class="soil-cover" cx="1" cy="25" rx="44" ry="18" fill="#435840"/>
-              <path class="glint-stroke" d="M-11-22 Q2-32 17-21" fill="none" stroke="#fff2bb" stroke-width="4" stroke-linecap="round" opacity="0"/>
-            </g>
-            <g class="discovery paper-fragment" tabindex="0" role="button" aria-label="Printed paper fragment hidden behind flowers" data-label="A printed fragment with no complete number" transform="translate(1027 610) rotate(7)">
-              <path d="M-74-35 L74-29 L65 35 L-69 29Z" fill="url(#paper-scrap)" stroke="#59684c" stroke-width="3"/>
-              <path d="M-61-21 L58-16 L52 18 L-57 15Z" fill="url(#guilloche)" stroke="#64725b" stroke-width="1.5"/>
-              <text x="-44" y="8" fill="#425945" font-size="21" font-family="Georgia, serif" letter-spacing="7">76 04</text>
-            </g>
-            <g class="discovery silver-disc" tabindex="0" role="button" aria-label="Small silver disc among leaves" data-label="A dull silver disc, almost a stone" transform="translate(791 739) rotate(18)">
-              <ellipse rx="31" ry="19" fill="url(#coin-silver)" stroke="#4d5c50" stroke-width="3"/>
-              <path d="M-14-3 Q0-12 14-2" fill="none" stroke="#d8dccb" stroke-width="2" opacity=".7"/>
-            </g>
-            <g class="discovery numeral" tabindex="0" role="button" aria-label="Serial number hidden in the grass" data-label="Serial numerals tangled in the stems" transform="translate(492 632) rotate(-83)">
-              <text x="0" y="0" fill="#d6c28c" opacity=".72" font-size="19" font-family="ui-monospace, monospace" letter-spacing="4">K318729</text>
-            </g>
-            <g class="discovery tiny-star" tabindex="0" role="button" aria-label="Tiny engraved star near a seed head" data-label="A banknote star caught on a stem" transform="translate(1184 542)">
-              <path d="M0-15 L4-5 L15-5 L6 2 L10 13 L0 7 L-10 13 L-6 2 L-15-5 L-4-5Z" fill="#cbb879" stroke="#545c42" stroke-width="2"/>
-            </g>
-          </g>
-
-          <g class="ink-plants" fill="none" stroke-linecap="round" stroke-linejoin="round">
-            <g class="plant middle" transform="translate(34 0)"><g class="reactive"><g class="sway">
-              <path d="M58 717 Q51 625 68 558 M108 720 Q126 630 112 584 M154 720 Q142 650 163 612 M204 721 Q225 606 214 543 M258 720 Q253 638 276 591" stroke="#36553e" stroke-width="5"/>
-              <path d="M65 626 Q34 604 27 576 M114 644 Q144 626 154 598 M210 623 Q181 603 174 573 M258 654 Q290 633 301 607" stroke="#5f764f" stroke-width="3.5"/>
-              <g fill="#d5b35d" stroke="#6e5b38" stroke-width="2">
-                <circle cx="68" cy="554" r="12"/><circle cx="214" cy="539" r="14"/><circle cx="276" cy="587" r="10"/>
-              </g>
-              <g fill="#a26767" stroke="#5b4b45" stroke-width="2">
-                <path d="M112 586 l-17-19 19-10 15 17Z"/><path d="M162 613 l-14-17 17-12 14 18Z"/>
-              </g>
-            </g></g></g>
-
-            <g class="plant middle" transform="translate(548 10)"><g class="reactive"><g class="sway">
-              <path d="M28 716 Q19 626 40 575 M82 715 Q101 603 88 548 M137 718 Q128 645 144 606 M196 716 Q216 622 205 568 M249 718 Q239 596 263 532" stroke="#3c5a40" stroke-width="5"/>
-              <path d="M39 650 Q11 627 8 602 M86 618 Q115 598 123 570 M145 667 Q174 647 181 620 M204 638 Q172 617 166 592 M258 611 Q289 588 294 557" stroke="#77865b" stroke-width="3.5"/>
-              <g fill="#b78755" stroke="#614d39" stroke-width="2">
-                <circle cx="40" cy="571" r="11"/><circle cx="88" cy="544" r="13"/><circle cx="205" cy="564" r="10"/>
-              </g>
-              <g fill="#8b83aa" stroke="#4a4b68" stroke-width="2">
-                <path d="M144 607 q-23-20 1-32 q25 12-1 32Z"/><path d="M263 534 q-24-22 1-34 q28 14-1 34Z"/>
-              </g>
-            </g></g></g>
-
-            <g class="plant middle" transform="translate(1100 4)"><g class="reactive"><g class="sway">
-              <path d="M22 720 Q31 637 19 588 M76 719 Q64 601 82 549 M132 720 Q153 630 143 577 M188 720 Q179 649 202 606 M250 720 Q265 612 253 558" stroke="#34523d" stroke-width="5"/>
-              <path d="M22 654 Q-4 630-9 604 M79 622 Q109 599 114 574 M142 643 Q113 621 108 596 M199 666 Q225 646 234 620 M252 625 Q280 605 287 577" stroke="#6f8356" stroke-width="3.5"/>
-              <g fill="#d19a5d" stroke="#684c35" stroke-width="2">
-                <circle cx="19" cy="584" r="12"/><circle cx="143" cy="573" r="13"/><circle cx="253" cy="554" r="11"/>
-              </g>
-              <g fill="#c47868" stroke="#684841" stroke-width="2">
-                <path d="M82 551 q-25-19 0-34 q27 15 0 34Z"/><path d="M202 607 q-24-17 0-31 q25 14 0 31Z"/>
-              </g>
-            </g></g></g>
-          </g>
-
-          <g class="middle-plants" filter="url(#soft-shadow)">
-            <g class="plant middle" transform="translate(94 682) scale(.94)"><g class="reactive"><g class="sway"><use href="#fern"/></g></g></g>
-            <g class="plant middle" transform="translate(171 706) scale(.72)"><g class="reactive"><g class="sway"><use href="#poppy"/></g></g></g>
-            <g class="plant middle" transform="translate(246 671) scale(.86)"><g class="reactive"><g class="sway"><use href="#grass-tuft"/></g></g></g>
-            <g class="plant middle" transform="translate(364 689) scale(.74)"><g class="reactive"><g class="sway"><use href="#bellflower"/></g></g></g>
-            <g class="plant middle" transform="translate(448 655) scale(.92)"><g class="reactive"><g class="sway"><use href="#daisy"/></g></g></g>
-            <g class="plant middle" transform="translate(560 713) scale(.66)"><g class="reactive"><g class="sway"><use href="#clover"/></g></g></g>
-            <g class="plant middle" transform="translate(648 675) scale(.9)"><g class="reactive"><g class="sway"><use href="#seedhead"/></g></g></g>
-            <g class="plant middle" transform="translate(733 704) scale(.74)"><g class="reactive"><g class="sway"><use href="#poppy"/></g></g></g>
-            <g class="plant middle" transform="translate(853 662) scale(.94)"><g class="reactive"><g class="sway"><use href="#fern"/></g></g></g>
-            <g class="plant middle" transform="translate(941 713) scale(.7)"><g class="reactive"><g class="sway"><use href="#daisy"/></g></g></g>
-            <g class="plant middle" transform="translate(1087 677) scale(.89)"><g class="reactive"><g class="sway"><use href="#grass-tuft"/></g></g></g>
-            <g class="plant middle" transform="translate(1191 699) scale(.71)"><g class="reactive"><g class="sway"><use href="#bellflower"/></g></g></g>
-            <g class="plant middle" transform="translate(1288 665) scale(.88)"><g class="reactive"><g class="sway"><use href="#poppy"/></g></g></g>
-            <g class="plant middle" transform="translate(1380 710) scale(.82)"><g class="reactive"><g class="sway"><use href="#seedhead"/></g></g></g>
-
-            <g class="plant middle low" transform="translate(131 770) scale(.59)"><g class="reactive"><g class="sway"><use href="#clover"/></g></g></g>
-            <g class="plant middle low" transform="translate(523 778) scale(.54)"><g class="reactive"><g class="sway"><use href="#poppy"/></g></g></g>
-            <g class="plant middle low" transform="translate(695 782) scale(.55)"><g class="reactive"><g class="sway"><use href="#bellflower"/></g></g></g>
-            <g class="plant middle low" transform="translate(999 777) scale(.58)"><g class="reactive"><g class="sway"><use href="#clover"/></g></g></g>
-            <g class="plant middle low" transform="translate(1240 782) scale(.6)"><g class="reactive"><g class="sway"><use href="#daisy"/></g></g></g>
-          </g>
-
-          <g class="small-stones">
-            <ellipse cx="380" cy="781" rx="27" ry="13" fill="#727965" stroke="#465347" stroke-width="3"/>
-            <ellipse cx="895" cy="807" rx="21" ry="10" fill="#9b8d68" stroke="#4c5c49" stroke-width="3"/>
-            <ellipse cx="1162" cy="760" rx="17" ry="9" fill="#777d69" stroke="#4b5b4c" stroke-width="2"/>
-          </g>
-
-          <g class="foreground-plants">
-            <g class="plant foreground" transform="translate(-2 925) scale(1.72)"><g class="reactive"><g class="sway"><use href="#grass-tuft"/></g></g></g>
-            <g class="plant foreground" transform="translate(126 917) scale(1.15)"><g class="reactive"><g class="sway"><use href="#daisy"/></g></g></g>
-            <g class="plant foreground" transform="translate(287 927) scale(1.35)"><g class="reactive"><g class="sway"><use href="#fern"/></g></g></g>
-            <g class="plant foreground" transform="translate(599 932) scale(1.23)"><g class="reactive"><g class="sway"><use href="#grass-tuft"/></g></g></g>
-            <g class="plant foreground" transform="translate(891 929) scale(1.12)"><g class="reactive"><g class="sway"><use href="#seedhead"/></g></g></g>
-            <g class="plant foreground" transform="translate(1126 925) scale(1.42)"><g class="reactive"><g class="sway"><use href="#fern"/></g></g></g>
-            <g class="plant foreground" transform="translate(1383 928) scale(1.72)"><g class="reactive"><g class="sway"><use href="#grass-tuft"/></g></g></g>
-          </g>
-
-          <g class="ambient-stage" aria-hidden="true">
-            <g class="butterfly-event ambient-event">
-              <path d="M0 0 C-22-22-38 3-8 10 C-36 21-17 38 1 12" fill="#c99554" stroke="#594d37" stroke-width="2"/>
-              <path d="M2 0 C24-20 39 6 9 11 C35 22 17 38 1 12" fill="#d9b278" stroke="#594d37" stroke-width="2"/>
-              <path d="M1-3 L2 19" stroke="#3c453a" stroke-width="3"/>
-            </g>
-            <g class="paper-event ambient-event">
-              <path d="M-35-20 L34-16 L28 20 L-32 17Z" fill="#d8cda5" stroke="#667055" stroke-width="2"/>
-              <path d="M-24-8 Q0-16 23-5 M-22 3 Q1-5 20 5" fill="none" stroke="#6c7659" stroke-width="1.5"/>
-            </g>
-            <ellipse class="shadow-event ambient-event" cx="0" cy="0" rx="180" ry="45" fill="#2b4338" opacity="0"/>
-            <g class="seed-event ambient-event" fill="#c9bc87">
-              <path d="M0 0 Q10-8 13 3 Q7 9 0 0Z"/>
-              <path d="M20 8 Q30 0 33 11 Q27 17 20 8Z"/>
-            </g>
-          </g>
-        </svg>
-
-        <div class="grain" aria-hidden="true"></div>
-        <p class="discovery-note" aria-live="polite"></p>
-        <p class="watch-note">Stay a while. The smallest details do not arrive on schedule.</p>
-      </section>
-
-      <footer class="colophon">
-        <p>Move gently through the grasses. Tap or focus what catches your eye.</p>
-        <p aria-hidden="true">Ink, paper, weather, loose change.</p>
-      </footer>
+      <div class="edge-shade" aria-hidden="true"></div>
     </main>
   </body>
 </html>
